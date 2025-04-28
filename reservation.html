@@ -46,8 +46,9 @@
   <button onclick="confirmReservation()">予約確定</button>
 </div>
 
+<!-- 🎯 必ずここでscriptを置く！ -->
 <script>
-  // --- 商品名をURLパラメータから取得 ---
+  // --- URLから商品名取得 ---
   function getItemFromUrl() {
     const params = new URLSearchParams(window.location.search);
     return params.get('item') || '家電';
@@ -74,11 +75,11 @@
       returnDate: ret
     };
 
-    // --- localStorageに保存 ---
+    // localStorageに保存
     localStorage.setItem('reservation', JSON.stringify(reservationData));
 
-    // --- 完了メッセージ表示 ---
-    alert(`予約完了！\n商品: ${itemName}\n受取日: ${pickup}\n返却日: ${ret}`);
+    // 予約完了メッセージ表示
+    alert(`✅ 予約完了！\n\n【商品】${itemName}\n【受取日】${pickup}\n【返却日】${ret}`);
   }
 </script>
 
