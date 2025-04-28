@@ -89,19 +89,20 @@
 
   const productList = document.getElementById('productList');
 
-  products.forEach(product => {
-    const card = document.createElement('div');
-    card.className = 'product-card';
-    card.innerHTML = `
-      <img src="${product.image}" alt="${product.name}">
-      <h3>${product.name}</h3>
-      <p>${product.price}</p>
-      <a href="reservation.html">
-  <button>予約する</button>
-</a>
-    `;
-    productList.appendChild(card);
-  });
+ products.forEach(product => {
+  const card = document.createElement('div');
+  card.className = 'product-card';
+  card.innerHTML = `
+    <img src="${product.image}" alt="${product.name}">
+    <h3>${product.name}</h3>
+    <p>${product.price}</p>
+    <a href="reservation.html?item=${encodeURIComponent(product.name)}">
+      <button>予約する</button>
+    </a>
+  `;
+  productList.appendChild(card);
+});
+
 </script>
 
 </body>
