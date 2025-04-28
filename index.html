@@ -21,3 +21,87 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>HACOレンタル商品一覧</title>
+  <style>
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+    }
+    .product-card {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    }
+    .product-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .product-card button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .product-card button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<h1>📦 HACOレンタル商品一覧</h1>
+
+<div class="product-list" id="productList">
+  <!-- ここに商品を表示する -->
+</div>
+
+<script>
+  const products = [
+    {
+      name: "Dyson掃除機",
+      price: "1,000円/日",
+      image: "https://via.placeholder.com/150?text=Dyson"
+    },
+    {
+      name: "パナソニック加湿器",
+      price: "800円/日",
+      image: "https://via.placeholder.com/150?text=Humidifier"
+    },
+    {
+      name: "SHARP空気清浄機",
+      price: "1,200円/日",
+      image: "https://via.placeholder.com/150?text=Air+Purifier"
+    }
+  ];
+
+  const productList = document.getElementById('productList');
+
+  products.forEach(product => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <img src="${product.image}" alt="${product.name}">
+      <h3>${product.name}</h3>
+      <p>${product.price}</p>
+      <button onclick="alert('予約機能はこれから追加！')">予約する</button>
+    `;
+    productList.appendChild(card);
+  });
+</script>
+
+</body>
+</html>
+
