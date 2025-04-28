@@ -61,3 +61,15 @@ function confirmReservation() {
 
 </body>
 </html>
+<script>
+// URLパラメータから商品名を取得する関数
+function getItemFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('item') || '家電';
+}
+
+// 商品名をページに反映させる
+const itemName = getItemFromUrl();
+const reservationText = document.querySelector('.reservation-text');
+reservationText.textContent = `${itemName}を予約しますか？`;
+</script>
