@@ -2,29 +2,6 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>HACOログインページ</title>
-  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-</head>
-<body>
-
-  <h1>HACOへようこそ！</h1>
-  <button onclick="login()">LINEでログインする</button>
-
-  <script>
-    async function login() {
-      await liff.init({ liffId: 'あなたのLIFF IDをここに' });
-      if (!liff.isLoggedIn()) {
-        liff.login();
-      }
-    }
-  </script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
   <title>HACOレンタル商品一覧</title>
   <style>
     .product-list {
@@ -58,6 +35,9 @@
     .product-card button:hover {
       background-color: #45a049;
     }
+    a {
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -65,7 +45,7 @@
 <h1>📦 HACOレンタル商品一覧</h1>
 
 <div class="product-list" id="productList">
-  <!-- ここに商品を表示する -->
+  <!-- 商品リストをここに生成する -->
 </div>
 
 <script>
@@ -89,22 +69,20 @@
 
   const productList = document.getElementById('productList');
 
- products.forEach(product => {
-  const card = document.createElement('div');
-  card.className = 'product-card';
-  card.innerHTML = `
-    <img src="${product.image}" alt="${product.name}">
-    <h3>${product.name}</h3>
-    <p>${product.price}</p>
-    <a href="reservation.html?item=${encodeURIComponent(product.name)}">
-      <button>予約する</button>
-    </a>
-  `;
-  productList.appendChild(card);
-});
-
+  products.forEach(product => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <img src="${product.image}" alt="${product.name}">
+      <h3>${product.name}</h3>
+      <p>${product.price}</p>
+      <a href="reservation.html?item=${encodeURIComponent(product.name)}">
+        <button>予約する</button>
+      </a>
+    `;
+    productList.appendChild(card);
+  });
 </script>
 
 </body>
 </html>
-
