@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>HACOログインページ</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+</head>
+<body>
+
+  <h1>HACOへようこそ！</h1>
+  <button onclick="login()">LINEでログインする</button>
+
+  <script>
+    async function login() {
+      await liff.init({ liffId: 'あなたのLIFF IDをここに' });
+      if (!liff.isLoggedIn()) {
+        liff.login();
+      }
+    }
+  </script>
+
+</body>
+</html>
