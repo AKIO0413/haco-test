@@ -55,8 +55,20 @@ function confirmReservation() {
     return;
   }
 
-  alert(`予約完了！\n受取日: ${pickup}\n返却日: ${ret}`);
+  // 商品名も取得（すでに取得しているitemNameを使う）
+  const reservationData = {
+    item: itemName,
+    pickupDate: pickup,
+    returnDate: ret
+  };
+
+  // 仮保存（localStorageに保存）
+  localStorage.setItem('reservation', JSON.stringify(reservationData));
+
+  // 保存完了したらアラート
+  alert(`予約完了！\n商品: ${itemName}\n受取日: ${pickup}\n返却日: ${ret}`);
 }
+
 </script>
 
 </body>
