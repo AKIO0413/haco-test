@@ -23,6 +23,7 @@
       background-color: #4CAF50;
       color: white;
       border: none;
+      cursor: pointer;
     }
     button:hover {
       background-color: #45a049;
@@ -34,7 +35,7 @@
 <h1>📅 家電レンタル予約</h1>
 
 <div class="reservation-form">
-　<p class="reservation-text">家電を予約しますか？</p>
+  <p class="reservation-text">家電を予約しますか？</p>
 
   <label>受取日を選択してください:</label>
   <input type="date" id="pickupDate">
@@ -46,42 +47,40 @@
 </div>
 
 <script>
-function confirmReservation() {
-  const pickup = document.getElementById('pickupDate').value;
-  const ret = document.getElementById('returnDate').value;
-
-  if (!pickup || !ret) {
-    alert('受取日と返却日を選択してください！');
-    return;
+  // --- 商品名をURLパラメータから取得 ---
+  function getItemFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('item') || '家電';
   }
 
-  // 商品名も取得（すでに取得しているitemNameを使う）
-  const reservationData = {
-    item: itemName,
-    pickupDate: pickup,
-    returnDate: ret
-  };
+  // --- ページ表示時に商品名を反映 ---
+  const itemName = getItemFromUrl();
+  const reservationText = document.querySelector('.reservation-text');
+  reservationText.textContent = `${itemName}を予約しますか？`;
 
-  // 仮保存（localStorageに保存）
-  localStorage.setItem('reservation', JSON.stringify(reservationData));
+  // --- 予約確定処理 ---
+  function confirmReservation() {
+    const pickup = document.getElementById('pickupDate').value;
+    const ret = document.getElementById('returnDate').value;
 
-  // 保存完了したらアラート
-  alert(`予約完了！\n商品: ${itemName}\n受取日: ${pickup}\n返却日: ${ret}`);
-}
+    if (!pickup || !ret) {
+      alert('受取日と返却日を選択してください！');
+      return;
+    }
 
+    const reservationData = {
+      item: itemName,
+      pickupDate: pickup,
+      returnDate: ret
+    };
+
+    // --- localStorageに保存 ---
+    localStorage.setItem('reservation', JSON.stringify(reservationData));
+
+    // --- 完了メッセージ表示 ---
+    alert(`予約完了！\n商品: ${itemName}\n受取日: ${pickup}\n返却日: ${ret}`);
+  }
 </script>
 
 </body>
 </html>
-<script>
-// URLパラメータから商品名を取得する関数
-function getItemFromUrl() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get('item') || '家電';
-}
-
-// 商品名をページに反映させる
-const itemName = getItemFromUrl();
-const reservationText = document.querySelector('.reservation-text');
-reservationText.textContent = `${itemName}を予約しますか？`;
-</script>
