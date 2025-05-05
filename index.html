@@ -35,8 +35,12 @@
   }
 
 .product-list {
-  justify-content: space-between; /* 端まで使う */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* ← これがスマホ時の2列配置に必要！ */
+  gap: 12px;
 }
+
 
 
   .product-card {
@@ -73,10 +77,9 @@
     text-decoration: none;
   }
 
-  /* ✅ スマホ対応：画面幅が600px以下の時、2列に */
- @media screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {
   .product-card {
-    width: 48%; /* 2列になるようにシンプル指定 */
+    width: 48%;  /* ← これが重要！ */
     margin-bottom: 10px;
   }
 }
