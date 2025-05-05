@@ -41,7 +41,7 @@
 <script>
 function renderHistory() {
   const historyContainer = document.getElementById('historyList');
-  const raw = localStorage.getItem('reservationHistory');
+const raw = localStorage.getItem('reservationHistory');
 
   if (!raw) {
     historyContainer.innerHTML = "<p>予約履歴はありません。</p>";
