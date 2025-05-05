@@ -1,105 +1,104 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HACOレンタル商品一覧</title>
- <style>
-  body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    margin: 0;
-  }
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      margin: 0;
+      background-color: #f9f9f9;
+    }
 
-  h1 {
-    text-align: center;
-  }
+    h1 {
+      text-align: center;
+    }
 
-  .top-bar {
-    text-align: right;
-    margin-bottom: 20px;
-  }
+    .top-bar {
+      text-align: right;
+      margin-bottom: 20px;
+    }
 
-  .top-bar a button {
-    background-color: #888;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+    .top-bar a button {
+      background-color: #888;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-  .top-bar a button:hover {
-    background-color: #666;
-  }
+    .top-bar a button:hover {
+      background-color: #666;
+    }
 
-.product-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; /* ← これがスマホ時の2列配置に必要！ */
-  gap: 12px;
-}
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+    }
 
+    .product-card {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      width: 100%;
+      max-width: 200px;
+      text-align: center;
+      background-color: white;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    }
 
+    .product-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
 
- .product-card {
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 15px;
-  width: 100%; /* ← 固定幅をやめる！ */
-  max-width: 200px; /* PC時の見た目はこれで調整 */
-  text-align: center;
-  background-color: white;
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-}
-  .product-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
+    .product-card h3 {
+      margin: 12px 0 6px;
+    }
 
-  .product-card button {
-    margin-top: 10px;
-    padding: 8px 12px;
-    border: none;
-    background-color: #2196F3;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+    .product-card button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      border: none;
+      background-color: #2196F3;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-  .product-card button:hover {
-    background-color: #1976D2;
-  }
+    .product-card button:hover {
+      background-color: #1976D2;
+    }
 
-  a {
-    text-decoration: none;
-  }
+    a {
+      text-decoration: none;
+    }
 
-@media screen and (max-width: 600px) {
-  .product-card {
-    width: 48% !important; /* ← これでスマホ時は2列！ */
-    max-width: none;
-  }
-}
-
-</style>
-
+    /* ✅ スマホ2列対応 */
+    @media screen and (max-width: 600px) {
+      .product-card {
+        width: 48% !important;
+        max-width: none;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <h1>📦 HACO 今すぐ使う</h1>
 
-<!-- ✅ 履歴などのサブメニューはここ -->
 <div class="top-bar">
   <a href="history.html">
     <button>予約履歴を見る</button>
   </a>
-  <!-- 事前予約へのリンクはここに追加予定 -->
 </div>
 
-<!-- ✅ 商品リスト -->
 <div class="product-list" id="productList"></div>
 
 <script>
@@ -107,17 +106,17 @@
     {
       name: "Dyson掃除機",
       price: "1,000円/日",
-      image: "https://via.placeholder.com/150?text=Dyson"
+      image: "https://via.placeholder.com/300x200?text=Dyson"
     },
     {
       name: "パナソニック加湿器",
       price: "800円/日",
-      image: "https://via.placeholder.com/150?text=Humidifier"
+      image: "https://via.placeholder.com/300x200?text=Humidifier"
     },
     {
       name: "SHARP空気清浄機",
       price: "1,200円/日",
-      image: "https://via.placeholder.com/150?text=Air+Purifier"
+      image: "https://via.placeholder.com/300x200?text=Air+Purifier"
     }
   ];
 
@@ -130,9 +129,9 @@
       <img src="${product.image}" alt="${product.name}">
       <h3>${product.name}</h3>
       <p>${product.price}</p>
-    <a href="instant-unlock.html?item=Dyson掃除機&image=https://via.placeholder.com/300x200?text=Dyson">
-  <button>今すぐ使う</button>
-</a>
+      <a href="instant-unlock.html?item=${encodeURIComponent(product.name)}&image=${encodeURIComponent(product.image)}">
+        <button>今すぐ使う</button>
+      </a>
     `;
     productList.appendChild(card);
   });
