@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>即時開錠ページ</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      text-align: center;
+      background-color: #f4f4f4;
+    }
+    .box {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+      display: inline-block;
+    }
+    h1 {
+      color: #4CAF50;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h1>🔓 ${商品名} を使用しますか？</h1>
+  <p id="itemNameText">商品を読み込み中...</p>
+  <button onclick="unlockBox()">▶️ 開錠する</button>
+</div>
+
+<script>
+  // 商品名をURLから取得
+  const params = new URLSearchParams(window.location.search);
+  const itemName = params.get('item') || "不明な商品";
+  document.getElementById("itemNameText").textContent = `${itemName} を開錠しますか？`;
+
+  // 仮APIエンドポイント（例：boxIdは商品名ベース）
+  function unlockBox() {
+    const encoded = encodeURIComponent(itemName);
+    const apiUrl = `https://api.haco.dev/unlock?boxId=${encoded}`;
+
+    fetch(apiUrl, { method: "POST" })
+      .then(res => {
+        if (!res.ok) throw new Error("開錠エラー");
+        alert(`✅ ${itemName} のロッカーが開きました！`);
+      })
+      .catch(err => {
+        console.error("解錠失敗:", err);
+        alert(`❌ 開錠に失敗しました。スタッフにご連絡ください。`);
+      });
+  }
+</script>
+
+</body>
+</html>
