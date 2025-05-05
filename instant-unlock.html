@@ -101,6 +101,18 @@
         status.textContent = `❌ 開錠に失敗しました。スタッフにご連絡ください。`;
       });
   }
+
+  const image = params.get('image') || null;
+if (image) {
+  const imgTag = document.createElement('img');
+  imgTag.src = image;
+  imgTag.alt = itemName;
+  imgTag.style.maxWidth = "100%";
+  imgTag.style.borderRadius = "12px";
+  imgTag.style.margin = "20px 0";
+  document.querySelector(".card").insertBefore(imgTag, document.querySelector(".card p"));
+}
+
 </script>
 
 </body>
