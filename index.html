@@ -4,11 +4,33 @@
   <meta charset="UTF-8">
   <title>HACOレンタル商品一覧</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .top-bar {
+      text-align: right;
+      margin-bottom: 20px;
+    }
+    .top-bar a button {
+      background-color: #888;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .top-bar a button:hover {
+      background-color: #666;
+    }
     .product-list {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
-      padding: 20px;
+      justify-content: center;
     }
     .product-card {
       border: 1px solid #ccc;
@@ -17,6 +39,7 @@
       width: 200px;
       text-align: center;
       box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+      background-color: white;
     }
     .product-card img {
       width: 100%;
@@ -44,9 +67,15 @@
 
 <h1>📦 HACOレンタル商品一覧</h1>
 
-<div class="product-list" id="productList">
-  <!-- 商品リストをここに生成する -->
+<!-- ✅ 履歴ボタン -->
+<div class="top-bar">
+  <a href="history.html">
+    <button>予約履歴を見る</button>
+  </a>
 </div>
+
+<!-- ✅ 商品リスト -->
+<div class="product-list" id="productList"></div>
 
 <script>
   const products = [
@@ -85,21 +114,4 @@
 </script>
 
 </body>
-  <body>
-
-<h1>📦 HACOレンタル商品一覧</h1>
-
-<!-- ✅ ここに追加 -->
-<div style="text-align: right; margin-bottom: 10px;">
-  <a href="history.html">
-    <button style="padding: 8px 16px; background-color: #888; color: white; border: none; border-radius: 5px;">
-      予約履歴を見る
-    </button>
-  </a>
-</div>
-
-<div class="product-list" id="productList">
-  <!-- 商品リストはそのまま -->
-</div>
-
 </html>
