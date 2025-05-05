@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>返却する｜HACO</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #fff;
+      margin: 0;
+      padding: 20px;
+      color: #111;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .item-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .item-card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .item-card h3 {
+      margin: 0 0 8px;
+    }
+
+    .item-card button {
+      padding: 8px 14px;
+      background-color: #2196F3;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .item-card button:hover {
+      background-color: #1976D2;
+    }
+
+    .status-box {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 18px;
+      display: none;
+    }
+
+    .complete {
+      font-size: 20px;
+      font-weight: bold;
+      color: #2196F3;
+      margin-top: 20px;
+    }
+
+    .cta-button {
+      display: none;
+      margin: 20px auto 0;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+</head>
+<body>
+
+<h1>📥 返却する商品を選んでください</h1>
+
+<div class="item-list" id="itemList"></div>
+
+<div class="status-box" id="statusBox"></div>
+<button class="cta-button" id="subscribeBtn" onclick="goToSubscribe()">お得に使う方法を見る</button>
+
+<script>
+  const borrowedItems = [
+    { name: "Dyson 掃除機", id: "dyson" },
+    { name: "Anker プロジェクター", id: "projector" }
+  ];
+
+  const itemList = document.getElementById("itemList");
+  const statusBox = document.getElementById("statusBox");
+  const subscribeBtn = document.getElementById("subscribeBtn");
+
+  borrowedItems.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "item-card";
+    card.innerHTML = `
+      <h3>${item.name}</h3>
+      <button onclick="returnItem('${item.name}')">返却する</button>
+    `;
+    itemList.appendChild(card);
+  });
+
+  function returnItem(name) {
+    itemList.style.display = "none";
+    statusBox.style.display = "block";
+    statusBox.textContent = `🔓 ${name} のロッカーを開錠中...`;
+
+    setTimeout(() => {
+      statusBox.innerHTML = `✅ ${name} の返却が完了しました！<br><span class="complete">非日常への扉、閉じました。</span>`;
+      subscribeBtn.style.display = "block";
+    }, 2000);
+  }
+
+  function goToSubscribe() {
+    window.location.href = "subscribe.html"; // ← 任意のサブスクLPに変更可能
+  }
+</script>
+
+</body>
+</html>
