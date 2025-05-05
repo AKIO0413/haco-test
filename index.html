@@ -76,11 +76,13 @@
   }
 
   /* ✅ スマホ対応：画面幅が600px以下の時、2列に */
-  @media screen and (max-width: 600px) {
-    .product-card {
-      width: calc(50% - 20px); /* gap分引いて2列 */
-    }
+ @media screen and (max-width: 600px) {
+  .product-card {
+    width: 48%; /* 2列になるようにシンプル指定 */
+    margin-bottom: 10px;
   }
+}
+
 </style>
 
 </head>
