@@ -115,12 +115,12 @@ const products = [
 ];
 
 
- products.forEach(product => {
+products.forEach(product => {
   const card = document.createElement('div');
   card.className = 'product-card';
 
   const encodedName = encodeURIComponent(product.name);
-  const encodedImage = encodeURIComponent(product.image);
+  const encodedImage = encodeURIComponent(product.image); // ← ★ここ！
 
   card.innerHTML = `
     <img src="${product.image}" alt="${product.name}">
@@ -130,8 +130,10 @@ const products = [
       <button>今すぐ使う</button>
     </a>
   `;
+
   productList.appendChild(card);
 });
+
 
 </script>
 
