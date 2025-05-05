@@ -2,86 +2,35 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>HACO 予約ページ</title>
+  <title>予約完了</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 20px;
+      text-align: center;
+      padding: 100px 20px;
+      background-color: #f4f4f4;
     }
-    .reservation-form {
-      max-width: 400px;
-      margin: auto;
+    .box {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+      display: inline-block;
     }
-    input, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+    h1 {
+      color: #4CAF50;
     }
-    button {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
+    p {
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
-
-<h1>📅 家電レンタル予約</h1>
-
-<div class="reservation-form">
-  <p class="reservation-text">家電を予約しますか？</p>
-
-  <label>受取日を選択してください:</label>
-  <input type="date" id="pickupDate">
-
-  <label>返却日を選択してください:</label>
-  <input type="date" id="returnDate">
-
-  <button onclick="confirmReservation()">予約確定</button>
-</div>
-
-<!-- 🎯 必ずここでscriptを置く！ -->
-<script>
-  // --- URLから商品名取得 ---
-  function getItemFromUrl() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('item') || '家電';
-  }
-
-  // --- ページ表示時に商品名を反映 ---
-  const itemName = getItemFromUrl();
-  const reservationText = document.querySelector('.reservation-text');
-  reservationText.textContent = `${itemName}を予約しますか？`;
-
-  // --- 予約確定処理 ---
-  function confirmReservation() {
-    const pickup = document.getElementById('pickupDate').value;
-    const ret = document.getElementById('returnDate').value;
-
-    if (!pickup || !ret) {
-      alert('受取日と返却日を選択してください！');
-      return;
-    }
-
-    const reservationData = {
-      item: itemName,
-      pickupDate: pickup,
-      returnDate: ret
-    };
-
-    // localStorageに保存
-    localStorage.setItem('reservation', JSON.stringify(reservationData));
-
-    // 予約完了メッセージ表示
-    alert(`✅ 予約完了！\n\n【商品】${itemName}\n【受取日】${pickup}\n【返却日】${ret}`);
-  }
-</script>
-
+  <div class="box">
+    <h1>✅ 予約完了！</h1>
+    <p>ご予約ありがとうございます。</p>
+    <p>LINEで詳細をご確認ください。</p>
+    <a href="index.html">商品一覧に戻る</a>
+  </div>
 </body>
 </html>
