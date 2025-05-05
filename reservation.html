@@ -60,7 +60,7 @@
   reservationText.textContent = `${itemName}を予約しますか？`;
 
   // --- 予約確定処理 ---
- function confirmReservation() {
+function confirmReservation() {
   const pickup = document.getElementById('pickupDate').value;
   const ret = document.getElementById('returnDate').value;
 
@@ -75,6 +75,17 @@
     returnDate: ret,
     createdAt: new Date().toISOString()
   };
+
+  const existingRaw = localStorage.getItem('reservationHistory');
+  const history = existingRaw ? JSON.parse(existingRaw) : [];
+
+  history.push(reservationData);
+
+  localStorage.setItem('reservationHistory', JSON.stringify(history));
+
+  window.location.href = "thankyou.html";
+}
+
 
   // ✅ 複数予約を配列として保存
 const existingRaw = localStorage.getItem('reservationHistory');
