@@ -1,52 +1,56 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>今すぐ使う｜HACO</title>
   <style>
     body {
-      margin: 0;
       font-family: 'Helvetica Neue', sans-serif;
       background-color: #fff;
       color: #111;
+      margin: 0;
+      padding: 40px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 60px 20px;
     }
 
     .logo {
       font-size: 28px;
       font-weight: bold;
-      letter-spacing: 1px;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
 
     .card {
       background-color: #f9f9f9;
+      border: 1px solid #ddd;
       border-radius: 12px;
       padding: 30px;
       max-width: 420px;
       width: 100%;
       box-shadow: 0 8px 16px rgba(0,0,0,0.06);
       text-align: center;
-      border: 1px solid #ddd;
     }
 
     .card h2 {
       font-size: 22px;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      margin: 16px 0;
     }
 
     .card p {
-      font-size: 16px;
-      margin-bottom: 30px;
+      font-size: 15px;
       color: #333;
     }
 
     .button {
+      margin-top: 20px;
       background-color: #4CAF50;
       color: white;
       padding: 12px 24px;
@@ -54,7 +58,6 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.2s ease;
     }
 
     .button:hover {
@@ -62,7 +65,7 @@
     }
 
     .status-message {
-      margin-top: 20px;
+      margin-top: 15px;
       font-size: 14px;
       color: #666;
     }
@@ -73,7 +76,8 @@
 <div class="logo">HACO</div>
 
 <div class="card">
-  <h2 id="itemNameHeading">商品を読み込み中...</h2>
+  <h2 id="itemNameHeading">読み込み中...</h2>
+  <img id="itemImage" src="" alt="" style="display: none;">
   <p>ご利用ありがとうございます。下のボタンでロッカーを開錠します。</p>
   <button class="button" onclick="unlockBox()">🔓 開錠する</button>
   <div class="status-message" id="statusMsg"></div>
@@ -82,13 +86,25 @@
 <script>
   const params = new URLSearchParams(window.location.search);
   const itemName = params.get('item') || "不明な商品";
-  document.getElementById("itemNameHeading").textContent = `${itemName}`;
+  const imageURL = params.get('image');
 
+  // 商品名表示
+  document.getElementById("itemNameHeading").textContent = itemName;
+
+  // 商品画像表示
+  if (imageURL) {
+    const img = document.getElementById("itemImage");
+    img.src = imageURL;
+    img.alt = itemName;
+    img.style.display = "block";
+  }
+
+  // 解錠処理
   function unlockBox() {
     const encoded = encodeURIComponent(itemName);
     const apiUrl = `https://api.haco.dev/unlock?boxId=${encoded}`;
-
     const status = document.getElementById("statusMsg");
+
     status.textContent = "開錠中です...";
 
     fetch(apiUrl, { method: "POST" })
@@ -97,22 +113,10 @@
         status.textContent = `✅ ${itemName} のロッカーが開きました`;
       })
       .catch(err => {
-        console.error("開錠エラー:", err);
+        console.error("解錠エラー:", err);
         status.textContent = `❌ 開錠に失敗しました。スタッフにご連絡ください。`;
       });
   }
-
-  const image = params.get('image') || null;
-if (image) {
-  const imgTag = document.createElement('img');
-  imgTag.src = image;
-  imgTag.alt = itemName;
-  imgTag.style.maxWidth = "100%";
-  imgTag.style.borderRadius = "12px";
-  imgTag.style.margin = "20px 0";
-  document.querySelector(".card").insertBefore(imgTag, document.querySelector(".card p"));
-}
-
 </script>
 
 </body>
