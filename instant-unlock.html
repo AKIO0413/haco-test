@@ -151,33 +151,24 @@
     img.style.display = "block";
   }
 
-  function unlockBox() {
-    const encoded = encodeURIComponent(itemName);
-    const apiUrl = `https://api.haco.dev/unlock?boxId=${encoded}`;
+function unlockBox() {
+  const status = document.getElementById("statusMsg");
+  const overlay = document.getElementById("successOverlay");
 
-    const status = document.getElementById("statusMsg");
-    const overlay = document.getElementById("successOverlay");
+  status.textContent = "開錠中です...";
 
-    status.textContent = "開錠中です...";
+  // ✅ 開発用：1.5秒後に成功表示だけ出す
+  setTimeout(() => {
+    status.textContent = "";
+    overlay.classList.add("active");
 
-    fetch(apiUrl, { method: "POST" })
-      .then(res => {
-        if (!res.ok) throw new Error("開錠失敗");
+    // ✅ 3秒後にトップへ戻る
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 3000);
+  }, 1500);
+}
 
-        // ✅ 成功したらUI切り替え
-        status.textContent = "";
-        overlay.classList.add("active");
-
-        // ✅ 3秒後にトップに戻す（任意）
-        setTimeout(() => {
-          window.location.href = "index.html";
-        }, 3000);
-      })
-      .catch(err => {
-        console.error("開錠エラー:", err);
-        status.textContent = `❌ 開錠に失敗しました。スタッフにご連絡ください。`;
-      });
-  }
 </script>
 
 </body>
