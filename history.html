@@ -39,40 +39,46 @@
 </div>
 
 <script>
-function renderHistory() {
-  const historyContainer = document.getElementById('historyList');
-const raw = localStorage.getItem('reservationHistory');
+  function renderHistory() {
+    const historyContainer = document.getElementById('historyList');
+    const raw = localStorage.getItem('reservationHistory');
 
-  if (!raw) {
-    historyContainer.innerHTML = "<p>予約履歴はありません。</p>";
-    return;
-  }
+    if (!raw) {
+      historyContainer.innerHTML = "<p>予約履歴はありません。</p>";
+      return;
+    }
 
-  const history = JSON.parse(raw);
+    let history;
+    try {
+      history = JSON.parse(raw);
+    } catch (e) {
+      console.error("履歴データの読み込みに失敗しました", e);
+      historyContainer.innerHTML = "<p>履歴データが壊れています。</p>";
+      return;
+    }
 
-  if (history.length === 0) {
-    historyContainer.innerHTML = "<p>予約履歴はありません。</p>";
-    return;
-  }
+    if (!Array.isArray(history) || history.length === 0) {
+      historyContainer.innerHTML = "<p>予約履歴はありません。</p>";
+      return;
+    }
 
-  const html = history
-    .map(data => `
-      <div class="history-item">
-        <strong>商品:</strong> ${data.item}<br>
-        <strong>受取日:</strong> ${data.pickupDate}<br>
-        <strong>返却日:</strong> ${data.returnDate}<br>
-        <small>${new Date(data.createdAt).toLocaleString()}</small>
-      </div>
-    `)
-    .join("");
+    const html = history
+      .map(data => `
+        <div class="history-item">
+          <strong>商品:</strong> ${data.item}<br>
+          <strong>受取日:</strong> ${data.pickupDate}<br>
+          <strong>返却日:</strong> ${data.returnDate}<br>
+          <small>${new Date(data.createdAt).toLocaleString()}</small>
+        </div>
+      `)
+      .join("");
 
-  historyContainer.innerHTML = html;
-}
-
+    historyContainer.innerHTML = html;
   }
 
   window.addEventListener('DOMContentLoaded', renderHistory);
 </script>
+
 
 </body>
 </html>
