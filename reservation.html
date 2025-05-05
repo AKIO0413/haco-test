@@ -60,27 +60,34 @@
   reservationText.textContent = `${itemName}を予約しますか？`;
 
   // --- 予約確定処理 ---
-  function confirmReservation() {
-    const pickup = document.getElementById('pickupDate').value;
-    const ret = document.getElementById('returnDate').value;
+ function confirmReservation() {
+  const pickup = document.getElementById('pickupDate').value;
+  const ret = document.getElementById('returnDate').value;
 
-    if (!pickup || !ret) {
-      alert('受取日と返却日を選択してください！');
-      return;
-    }
-
-    const reservationData = {
-      item: itemName,
-      pickupDate: pickup,
-      returnDate: ret
-    };
-
-    // localStorageに保存
-    localStorage.setItem('reservation', JSON.stringify(reservationData));
-
-    // 🎯 完了ページに遷移
-    window.location.href = "thankyou.html";
+  if (!pickup || !ret) {
+    alert('受取日と返却日を選択してください！');
+    return;
   }
+
+  const reservationData = {
+    item: itemName,
+    pickupDate: pickup,
+    returnDate: ret,
+    createdAt: new Date().toISOString()
+  };
+
+  // ✅ 複数予約を配列として保存
+  const existingRaw = localStorage.getItem('reservationHistory');
+  const history = existingRaw ? JSON.parse(existingRaw) : [];
+
+  history.push(reservationData); // 配列に追加
+
+  localStorage.setItem('reservationHistory', JSON.stringify(history));
+
+  // 🎯 完了ページに遷移
+  window.location.href = "thankyou.html";
+}
+
 </script>
 
 </body>
