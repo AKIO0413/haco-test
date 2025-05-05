@@ -114,21 +114,24 @@
     }
   ];
 
-  const productList = document.getElementById('productList');
+ products.forEach(product => {
+  const card = document.createElement('div');
+  card.className = 'product-card';
 
-  products.forEach(product => {
-    const card = document.createElement('div');
-    card.className = 'product-card';
-    card.innerHTML = `
-      <img src="${product.image}" alt="${product.name}">
-      <h3>${product.name}</h3>
-      <p>${product.price}</p>
-        <a href="instant-unlock.html?item=${encodeURIComponent(product.name)}&image=${encodeURIComponent(product.image)}">
-        <button>今すぐ使う</button>
-      </a>
-    `;
-    productList.appendChild(card);
-  });
+  const encodedName = encodeURIComponent(product.name);
+  const encodedImage = encodeURIComponent(product.image);
+
+  card.innerHTML = `
+    <img src="${product.image}" alt="${product.name}">
+    <h3>${product.name}</h3>
+    <p>${product.price}</p>
+    <a href="instant-unlock.html?item=${encodedName}&image=${encodedImage}">
+      <button>今すぐ使う</button>
+    </a>
+  `;
+  productList.appendChild(card);
+});
+
 </script>
 
 </body>
