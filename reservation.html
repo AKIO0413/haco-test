@@ -46,59 +46,45 @@
   <button onclick="confirmReservation()">予約確定</button>
 </div>
 
-<!-- 🔽 スクリプトはbodyの一番下 -->
 <script>
-  // --- URLから商品名を取得 ---
+  // --- 商品名をURLから取得 ---
   function getItemFromUrl() {
     const params = new URLSearchParams(window.location.search);
     return params.get('item') || '家電';
   }
 
-  // --- 商品名をページに表示 ---
   const itemName = getItemFromUrl();
   const reservationText = document.querySelector('.reservation-text');
   reservationText.textContent = `${itemName}を予約しますか？`;
 
-  // --- 予約確定処理 ---
-function confirmReservation() {
-  const pickup = document.getElementById('pickupDate').value;
-  const ret = document.getElementById('returnDate').value;
+  // --- 予約確定処理（複数保存対応） ---
+  function confirmReservation() {
+    const pickup = document.getElementById('pickupDate').value;
+    const ret = document.getElementById('returnDate').value;
 
-  if (!pickup || !ret) {
-    alert('受取日と返却日を選択してください！');
-    return;
+    if (!pickup || !ret) {
+      alert('受取日と返却日を選択してください！');
+      return;
+    }
+
+    const reservationData = {
+      item: itemName,
+      pickupDate: pickup,
+      returnDate: ret,
+      createdAt: new Date().toISOString()
+    };
+
+    // 既存の履歴を取得（なければ空配列）
+    const existingRaw = localStorage.getItem('reservationHistory');
+    const history = existingRaw ? JSON.parse(existingRaw) : [];
+
+    // 配列に追加して保存
+    history.push(reservationData);
+    localStorage.setItem('reservationHistory', JSON.stringify(history));
+
+    // 完了ページへ遷移
+    window.location.href = "thankyou.html";
   }
-
-  const reservationData = {
-    item: itemName,
-    pickupDate: pickup,
-    returnDate: ret,
-    createdAt: new Date().toISOString()
-  };
-
-  const existingRaw = localStorage.getItem('reservationHistory');
-  const history = existingRaw ? JSON.parse(existingRaw) : [];
-
-  history.push(reservationData);
-
-  localStorage.setItem('reservationHistory', JSON.stringify(history));
-
-  window.location.href = "thankyou.html";
-}
-
-
-  // ✅ 複数予約を配列として保存
-const existingRaw = localStorage.getItem('reservationHistory');
-const history = existingRaw ? JSON.parse(existingRaw) : [];
-
-history.push(reservationData);
-
-localStorage.setItem('reservationHistory', JSON.stringify(history));
-
-  // 🎯 完了ページに遷移
-  window.location.href = "thankyou.html";
-}
-
 </script>
 
 </body>
