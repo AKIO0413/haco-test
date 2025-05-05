@@ -43,16 +43,16 @@
 
 
 
-  .product-card {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 15px;
-    width: 200px;
-    text-align: center;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-    background-color: white;
-  }
-
+ .product-card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  width: 100%; /* ← 固定幅をやめる！ */
+  max-width: 200px; /* PC時の見た目はこれで調整 */
+  text-align: center;
+  background-color: white;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+}
   .product-card img {
     width: 100%;
     height: auto;
@@ -79,8 +79,8 @@
 
 @media screen and (max-width: 600px) {
   .product-card {
-    width: 48%;  /* ← これが重要！ */
-    margin-bottom: 10px;
+    width: 48% !important; /* ← これでスマホ時は2列！ */
+    max-width: none;
   }
 }
 
