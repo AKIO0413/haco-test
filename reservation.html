@@ -77,12 +77,12 @@
   };
 
   // ✅ 複数予約を配列として保存
-  const existingRaw = localStorage.getItem('reservationHistory');
-  const history = existingRaw ? JSON.parse(existingRaw) : [];
+const existingRaw = localStorage.getItem('reservationHistory');
+const history = existingRaw ? JSON.parse(existingRaw) : [];
 
-  history.push(reservationData); // 配列に追加
+history.push(reservationData);
 
-  localStorage.setItem('reservationHistory', JSON.stringify(history));
+localStorage.setItem('reservationHistory', JSON.stringify(history));
 
   // 🎯 完了ページに遷移
   window.location.href = "thankyou.html";
