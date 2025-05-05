@@ -39,26 +39,36 @@
 </div>
 
 <script>
-  function renderHistory() {
-    const historyContainer = document.getElementById('historyList');
-    const raw = localStorage.getItem('reservation');
+function renderHistory() {
+  const historyContainer = document.getElementById('historyList');
+  const raw = localStorage.getItem('reservationHistory');
 
-    if (!raw) {
-      historyContainer.innerHTML = "<p>予約履歴はありません。</p>";
-      return;
-    }
+  if (!raw) {
+    historyContainer.innerHTML = "<p>予約履歴はありません。</p>";
+    return;
+  }
 
-    const data = JSON.parse(raw);
+  const history = JSON.parse(raw);
 
-    const html = `
+  if (history.length === 0) {
+    historyContainer.innerHTML = "<p>予約履歴はありません。</p>";
+    return;
+  }
+
+  const html = history
+    .map(data => `
       <div class="history-item">
         <strong>商品:</strong> ${data.item}<br>
         <strong>受取日:</strong> ${data.pickupDate}<br>
-        <strong>返却日:</strong> ${data.returnDate}
+        <strong>返却日:</strong> ${data.returnDate}<br>
+        <small>${new Date(data.createdAt).toLocaleString()}</small>
       </div>
-    `;
+    `)
+    .join("");
 
-    historyContainer.innerHTML = html;
+  historyContainer.innerHTML = html;
+}
+
   }
 
   window.addEventListener('DOMContentLoaded', renderHistory);
