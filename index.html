@@ -6,11 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HACO ミニアプリ</title>
   <style>
+   
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HACO ミニアプリ バナー再設計</title>
+  <style>
     body {
       margin: 0;
       font-family: sans-serif;
       background-color: #f5f5f5;
-      padding-top: 180px; /* バナー高さに応じて余白調整 */
+      padding-top: 180px;
     }
 
     .banner-container {
@@ -20,38 +28,39 @@
       right: 0;
       z-index: 999;
       background-color: #f5f5f5;
-      padding: 20px 0;
+      padding: 16px;
       display: flex;
       justify-content: center;
     }
 
-   .banner-card {
-  width: 90%;
-  background: #444; /* ← ここを変更すればOK！ */
-  max-width: 280px; /* 実質70%相当 */
-  font-size: 90%;   /* テキストも少し小さめに */
-  ...
-}
-
+    .banner-card {
+      width: 100%;
+      max-width: 360px;
+      background: #dcdcdc;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
 
     .banner-card h1 {
-      font-size: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+      padding: 20px 20px 12px;
       line-height: 1.4;
-      margin: 0 0 12px 0;
       white-space: pre-line;
     }
 
     .banner-bottom {
       background: white;
-      border-radius: 0 0 20px 20px;
       color: black;
-      padding: 16px;
-      margin: -24px;
-      margin-top: 12px;
+      font-size: 13px;
+      padding: 16px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 13px;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
     }
 
     .banner-bottom button {
@@ -62,6 +71,24 @@
       font-size: 13px;
       cursor: pointer;
     }
+  </style>
+</head>
+<body>
+  <div class="banner-container">
+    <div class="banner-card">
+      <h1>自動でお得な料金に<br>３回以上使うなら<br>サブスクで</h1>
+      <div class="banner-bottom">
+        <div>
+          月額980円の自動サブスクが適用されると、<br>
+          それ以上はいくら使っても追加料金なし。
+        </div>
+        <button onclick="window.location.href='https://your-lp-link.com'">詳しくみる</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
 
     .product-list {
       display: grid;
