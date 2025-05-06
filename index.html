@@ -7,9 +7,18 @@
   <style>
     body {
       margin: 0;
-      padding: 20px;
+      padding-top: 160px; /* バナーの高さ分 */
       font-family: sans-serif;
       background-color: #f0f0f0;
+    }
+
+    .banner-fixed {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.7);
+      transform-origin: top center;
+      z-index: 1000;
     }
 
     .banner-card {
@@ -17,8 +26,7 @@
       border-radius: 20px;
       color: black;
       padding: 24px;
-      max-width: 720px;
-      margin: 0 auto 24px auto;
+      width: 360px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
@@ -96,34 +104,36 @@
 </head>
 <body>
 
-  <!-- ▼ サブスク案内バナー -->
-  <div class="banner-card">
-    <h1>自動でお得な料金に<br>３回以上使うなら<br>サブスクで</h1>
-    <div class="banner-bottom">
-      <div>
-        月額980円の自動サブスクが適用されると、<br>
-        それ以上はいくら使っても追加料金なし。
+  <!-- ▼ 固定バナー（70%縮小） -->
+  <div class="banner-fixed">
+    <div class="banner-card">
+      <h1>自動でお得な料金に<br>３回以上使うなら<br>サブスクで</h1>
+      <div class="banner-bottom">
+        <div>
+          月額980円の自動サブスクが適用されると、<br>
+          それ以上はいくら使っても追加料金なし。
+        </div>
+        <button onclick="window.location.href='https://your-lp-link.com'">詳しくみる</button>
       </div>
-      <button onclick="window.location.href='https://your-lp-link.com'">詳しくみる</button>
     </div>
   </div>
 
-  <!-- ▼ 商品一覧（画像＋2列レイアウト） -->
+  <!-- ▼ 商品一覧 -->
   <div class="product-list">
     <div class="product-card">
-      <img src="imagesrefa.jpg.png" alt="ReFa ドライヤー" />
+      <img src="./assets/refa.png" alt="ReFa ドライヤー" />
       <h3>ReFa ドライヤー</h3>
       <p>1,200円／日</p>
       <button>今すぐ使う</button>
     </div>
     <div class="product-card">
-      <img src="imagesprojector.jpg.png" alt="Anker プロジェクター" />
+      <img src="./assets/anker.png" alt="Anker プロジェクター" />
       <h3>Anker プロジェクター</h3>
       <p>1,000円／日</p>
       <button>今すぐ使う</button>
     </div>
     <div class="product-card">
-      <img src="imagesdyson.jpg.jpg" alt="Dyson 掃除機" />
+      <img src="./assets/dyson.png" alt="Dyson 掃除機" />
       <h3>Dyson 掃除機</h3>
       <p>1,000円／日</p>
       <button>今すぐ使う</button>
