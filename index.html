@@ -2,23 +2,14 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HACO ミニアプリ</title>
   <style>
     body {
       margin: 0;
-      padding-top: 160px; /* バナーの高さ分 */
+      padding: 20px;
       font-family: sans-serif;
-      background-color: #f0f0f0;
-    }
-
-    .banner-fixed {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%) scale(0.7);
-      transform-origin: top center;
-      z-index: 1000;
+      background-color: #f5f5f5;
     }
 
     .banner-card {
@@ -26,7 +17,8 @@
       border-radius: 20px;
       color: black;
       padding: 24px;
-      width: 360px;
+      max-width: 360px;
+      margin: 0 auto 24px auto;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
@@ -60,8 +52,9 @@
     }
 
     .product-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 16px;
       max-width: 720px;
       margin: 0 auto;
@@ -69,20 +62,21 @@
 
     .product-card {
       background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      width: 45%;
+      min-width: 160px;
       padding: 12px;
       text-align: center;
     }
 
     .product-card img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
+      max-width: 100%;
+      border-radius: 12px;
     }
 
     .product-card h3 {
-      margin: 12px 0 6px;
+      margin: 12px 0 4px;
       font-size: 16px;
     }
 
@@ -92,48 +86,46 @@
     }
 
     .product-card button {
-      background-color: #007bff;
+      background: #007bff;
       color: white;
       border: none;
-      padding: 8px 12px;
-      border-radius: 6px;
+      padding: 8px 16px;
       font-size: 14px;
+      border-radius: 8px;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
-
-  <!-- ▼ 固定バナー（70%縮小） -->
-  <div class="banner-fixed">
-    <div class="banner-card">
-      <h1>自動でお得な料金に<br>３回以上使うなら<br>サブスクで</h1>
-      <div class="banner-bottom">
-        <div>
-          月額980円の自動サブスクが適用されると、<br>
-          それ以上はいくら使っても追加料金なし。
-        </div>
-        <button onclick="window.location.href='https://your-lp-link.com'">詳しくみる</button>
+  <!-- ▼ サブスク案内バナー -->
+  <div class="banner-card">
+    <h1>自動でお得な料金に<br>３回以上使うなら<br>サブスクで</h1>
+    <div class="banner-bottom">
+      <div>
+        月額980円の自動サブスクが適用されると、<br>
+        それ以上はいくら使っても追加料金なし。
       </div>
+      <button onclick="window.location.href='https://your-lp-link.com'">詳しくみる</button>
     </div>
   </div>
 
   <!-- ▼ 商品一覧 -->
+  <h2 style="text-align:center; margin-top: 32px;">HACO レンタル商品一覧</h2>
   <div class="product-list">
     <div class="product-card">
-      <img src="./assets/refa.png" alt="ReFa ドライヤー" />
+      <img src="https://images.unsplash.com/photo-1606813909023-cc70b2de1c59?fit=crop&w=400&q=80" alt="ReFa ドライヤー">
       <h3>ReFa ドライヤー</h3>
       <p>1,200円／日</p>
       <button>今すぐ使う</button>
     </div>
     <div class="product-card">
-      <img src="./assets/anker.png" alt="Anker プロジェクター" />
+      <img src="https://images.unsplash.com/photo-1618005198919-d3d4b2cb9843?fit=crop&w=400&q=80" alt="Anker プロジェクター">
       <h3>Anker プロジェクター</h3>
       <p>1,000円／日</p>
       <button>今すぐ使う</button>
     </div>
     <div class="product-card">
-      <img src="./assets/dyson.png" alt="Dyson 掃除機" />
+      <img src="https://images.unsplash.com/photo-1606813909697-8a865cb74647?fit=crop&w=400&q=80" alt="Dyson 掃除機">
       <h3>Dyson 掃除機</h3>
       <p>1,000円／日</p>
       <button>今すぐ使う</button>
