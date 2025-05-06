@@ -3,268 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HACOレンタル商品一覧</title>
+  <title>HACO ミニアプリ</title>
   <style>
-
-    <div class="banner-card">
-  　<h1>自動でお得な料金に<br>３回以上使うなら<br>サブスクで</h1>
- 　 <div class="banner-bottom">
-    　<div>
-      　月額980円の自動サブスクが適用されると、<br>
-     　 それ以上はいくら使っても追加料金なし。
-   　 </div>
-    　<button onclick="window.location.href='https://your-lp-link.com'">詳しくみる</button>
-　  </div>
-　</div>
-
-    .banner-card {
-  background: #dcdcdc;
-  border-radius: 20px;
-  color: black;
-  padding: 24px;
-  max-width: 360px;
-  margin: 16px auto;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-.banner-card h1 {
-  font-size: 20px;
-  line-height: 1.4;
-  margin: 0 0 12px 0;
-  white-space: pre-line;
-  z-index: 2;
-  position: relative;
-}
-
-.appliance-image {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 100px;
-  height: auto;
-  z-index: 1;
-  opacity: 0.95;
-}
-
-.banner-bottom {
-  background: white;
-  border-radius: 0 0 20px 20px;
-  color: black;
-  padding: 16px;
-  margin: -24px;
-  margin-top: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 13px;
-  z-index: 2;
-  position: relative;
-}
-
-.banner-bottom button {
-  background: #eee;
-  border: none;
-  border-radius: 999px;
-  padding: 6px 12px;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
       padding: 20px;
-      background-color: #f9f9f9;  
-
-<script>
+      font-family: sans-serif;
+      background-color: #f0f0f0;
     }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
+    .banner-card {
+      background: #dcdcdc;
+      border-radius: 20px;
+      color: black;
+      padding: 24px;
+      max-width: 360px;
+      margin: 0 auto 24px auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
-    .top-bar {
-      text-align: right;
-      margin-bottom: 20px;
+    .banner-card h1 {
+      font-size: 20px;
+      line-height: 1.4;
+      margin: 0 0 12px 0;
+      white-space: pre-line;
     }
 
-    .top-bar a button {
-      background-color: #888;
-      color: white;
+    .banner-bottom {
+      background: white;
+      border-radius: 0 0 20px 20px;
+      color: black;
+      padding: 16px;
+      margin: -24px;
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .banner-bottom button {
+      background: #eee;
       border: none;
-      padding: 8px 16px;
-      border-radius: 5px;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 13px;
       cursor: pointer;
     }
-
-    .top-bar a button:hover {
-      background-color: #666;
-    }
-
-    .product-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 16px;
-    }
-
-    .product-card {
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .product-card img {
-      width: 100%;
-      border-radius: 8px;
-    }
-
-    .product-card h3 {
-      margin: 12px 0 6px;
-      font-size: 16px;
-    }
-
-    .product-card p {
-      font-size: 14px;
-      margin: 4px 0 10px;
-    }
-
-    .product-card button {
-      background-color: #2196F3;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .product-card button:hover {
-      background-color: #1976D2;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-   
-  function openSheet() {
-    document.getElementById("sub-sheet").classList.add("
-
   </style>
 </head>
-  <!-- ✅ HACO ボトムナビバー -->
-<div class="bottom-nav">
-  <a href="index.html">
-    <div class="nav-item">🏠<br><span>ホーム</span></div>
-  </a>
-  <a href="stamp.html">
-    <div class="nav-item">⭐<br><span>スタンプ</span></div>
-  </a>
-  <a href="instant-unlock.html">
-    <div class="nav-item">📦<br><span>借りる</span></div>
-  </a>
-  <a href="return.html">
-    <div class="nav-item">🔁<br><span>返す</span></div>
-  </a>
-  <a href="help.html">
-    <div class="nav-item">❓<br><span>問合せ</span></div>
-  </a>
-</div>
-
-<style>
-  .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #fff;
-    border-top: 1px solid #ccc;
-    display: flex;
-    justify-content: space-around;
-    padding: 6px 0;
-    z-index: 999;
-  }
-
-  .bottom-nav a {
-    text-decoration: none;
-    color: #333;
-    font-size: 14px;
-    text-align: center;
-    flex: 1;
-  }
-
-  .nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 18px;
-  }
-
-  .nav-item span {
-    font-size: 11px;
-    margin-top: 2px;
-  }
-</style>
-
 <body>
 
-<h1>📦 HACO 今すぐ使う</h1>
+  <!-- ▼ サブスク案内バナー -->
+  <div class="banner-card">
+    <h1>自動でお得な料金に<br>３回以上使うなら<br>サブスクで</h1>
+    <div class="banner-bottom">
+      <div>
+        月額980円の自動サブスクが適用されると、<br>
+        それ以上はいくら使っても追加料金なし。
+      </div>
+      <button onclick="window.location.href='https://your-lp-link.com'">詳しくみる</button>
+    </div>
+  </div>
 
-<div class="top-bar">
-  <a href="history.html">
-    <button>予約履歴を見る</button>
-  </a>
-</div>
-
-<div class="product-list" id="productList"></div>
-
-<script>
-const products = [
-  {
-    name: "ReFa ドライヤー",
-    price: "1,200円/日",
-    image: "imagesrefa.jpg.png"
-  },
-  {
-    name: "Anker プロジェクター",
-    price: "1,000円/日",
-    image: "imagesprojector.jpg.png"
-  },
-  {
-    name: "Dyson 掃除機",
-    price: "1,000円/日",
-    image: "imagesdyson.jpg.jpg"
-  }
-];
-
-
-products.forEach(product => {
-  const card = document.createElement('div');
-  card.className = 'product-card';
-
-  const encodedName = encodeURIComponent(product.name);
-  const encodedImage = encodeURIComponent(product.image); // ← ★ここ！
-
-  card.innerHTML = `
-    <img src="${product.image}" alt="${product.name}">
-    <h3>${product.name}</h3>
-    <p>${product.price}</p>
-    <a href="instant-unlock.html?item=${encodedName}&image=${encodedImage}">
-      <button>今すぐ使う</button>
-    </a>
-  `;
-
-  productList.appendChild(card);
-});
-
-
-</script>
+  <!-- ▼ 商品一覧エリア（仮） -->
+  <h2>HACO レンタル商品一覧（仮）</h2>
+  <div>
+    <p>・ReFa ドライヤー</p>
+    <p>・Anker プロジェクター</p>
+    <p>・Dyson 掃除機</p>
+  </div>
 
 </body>
 </html>
